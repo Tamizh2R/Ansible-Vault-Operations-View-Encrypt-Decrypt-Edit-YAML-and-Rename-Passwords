@@ -1,0 +1,71 @@
+Ansible Vault Guide
+
+This guide covers various Ansible Vault operations, including creating, encrypting, decrypting, viewing, editing, and rekeying YAML files.
+
+## Prerequisites
+
+Make sure you have Ansible and Python installed on your system:
+
+```shell
+yum install ansible -y
+yum install python -y
+Creating a Vault File
+You can create an encrypted YAML file while writing its content:
+
+shell
+Copy code
+ansible-vault create apache.yml
+Password: 1234
+re-enter: 1234
+Encrypting an Existing YAML File
+To encrypt an unencrypted .yml file, use the ansible-vault encrypt command:
+
+shell
+Copy code
+vi second.yml
+# [enter the yaml file]
+cat second.yml
+ansible-vault encrypt second.yml
+Password: 1234
+Decrypting an Encrypted File
+To decrypt an encrypted file, use the ansible-vault decrypt command:
+
+shell
+Copy code
+ansible-vault decrypt second.yml
+Password:
+cat second.yml
+Viewing an Encrypted File (without Decrypting)
+You can view the content of an encrypted YAML file without decrypting it:
+
+shell
+Copy code
+cat apache.yml
+ansible-vault view apache.yml
+password:
+Editing an Encrypted File
+To edit an encrypted YAML file, use the ansible-vault edit command:
+
+shell
+Copy code
+cat apache.yml
+vi apache.yml
+ansible-vault edit apache.yml
+password:
+:wq!
+Rekeying a Vault File
+To change the vault password, use the ansible-vault rekey command:
+
+shell
+Copy code
+ansible-vault rekey apache.yml
+old password: 1234
+new password: 5678
+Running a Vault YAML File
+You can run a playbook with a vault-encrypted YAML file using the ansible-playbook command:
+
+shell
+Copy code
+ansible-playbook -i hosts apache.yml --ask-vault-pass
+password: 5678
+This guide covers the basics of Ansible Vault for securing sensitive data in your playbooks. Feel free to explore further and customize your Ansible workflows.
