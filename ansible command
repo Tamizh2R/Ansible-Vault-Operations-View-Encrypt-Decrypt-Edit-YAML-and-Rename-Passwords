@@ -6,7 +6,7 @@ This guide covers various Ansible Vault operations, including creating, encrypti
 
 Make sure you have Ansible and Python installed on your system:
 
-```shell
+shell
 yum install ansible -y
 yum install python -y
 Creating a Vault File
